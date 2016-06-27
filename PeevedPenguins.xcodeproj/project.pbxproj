@@ -22,6 +22,9 @@
 		A3B670A21D218D7B0022E6B4 /* Penguin.sks in Resources */ = {isa = PBXBuildFile; fileRef = A3B670A11D218D7B0022E6B4 /* Penguin.sks */; };
 		A3B670A41D218FF40022E6B4 /* nodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B670A31D218FF40022E6B4 /* nodes.swift */; };
 		A3B670A61D2190AE0022E6B4 /* Seal.sks in Resources */ = {isa = PBXBuildFile; fileRef = A3B670A51D2190AE0022E6B4 /* Seal.sks */; };
+		A3B670A91D21943F0022E6B4 /* MainScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A3B670A81D21943F0022E6B4 /* MainScene.sks */; };
+		A3B670AB1D21961F0022E6B4 /* MSButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B670AA1D21961F0022E6B4 /* MSButtonNode.swift */; };
+		A3B670AD1D2198200022E6B4 /* MainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B670AC1D2198200022E6B4 /* MainScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +66,9 @@
 		A3B670A11D218D7B0022E6B4 /* Penguin.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Penguin.sks; sourceTree = "<group>"; };
 		A3B670A31D218FF40022E6B4 /* nodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = nodes.swift; sourceTree = "<group>"; };
 		A3B670A51D2190AE0022E6B4 /* Seal.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Seal.sks; sourceTree = "<group>"; };
+		A3B670A81D21943F0022E6B4 /* MainScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MainScene.sks; sourceTree = "<group>"; };
+		A3B670AA1D21961F0022E6B4 /* MSButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSButtonNode.swift; sourceTree = "<group>"; };
+		A3B670AC1D2198200022E6B4 /* MainScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,8 +125,11 @@
 				A3B670A31D218FF40022E6B4 /* nodes.swift */,
 				A3B6709F1D2189FF0022E6B4 /* CharacterActions.sks */,
 				A36B0E081D20E40800BD10C4 /* GameScene.sks */,
+				A3B670A81D21943F0022E6B4 /* MainScene.sks */,
+				A3B670AA1D21961F0022E6B4 /* MSButtonNode.swift */,
 				A36B0E0A1D20E40800BD10C4 /* GameScene.swift */,
 				A36B0E0C1D20E40800BD10C4 /* GameViewController.swift */,
+				A3B670AC1D2198200022E6B4 /* MainScene.swift */,
 				A36B0E0E1D20E40800BD10C4 /* Main.storyboard */,
 				A36B0E111D20E40900BD10C4 /* Assets.xcassets */,
 				A36B0E131D20E40900BD10C4 /* LaunchScreen.storyboard */,
@@ -268,6 +277,7 @@
 				A36B0E121D20E40900BD10C4 /* Assets.xcassets in Resources */,
 				A36B0E3B1D21867000BD10C4 /* Bear.sks in Resources */,
 				A36B0E391D2185A300BD10C4 /* assets.atlas in Resources */,
+				A3B670A91D21943F0022E6B4 /* MainScene.sks in Resources */,
 				A36B0E101D20E40800BD10C4 /* Main.storyboard in Resources */,
 				A3B670A01D2189FF0022E6B4 /* CharacterActions.sks in Resources */,
 			);
@@ -297,7 +307,9 @@
 				A36B0E0B1D20E40800BD10C4 /* GameScene.swift in Sources */,
 				A36B0E0D1D20E40800BD10C4 /* GameViewController.swift in Sources */,
 				A36B0E071D20E40800BD10C4 /* AppDelegate.swift in Sources */,
+				A3B670AD1D2198200022E6B4 /* MainScene.swift in Sources */,
 				A3B670A41D218FF40022E6B4 /* nodes.swift in Sources */,
+				A3B670AB1D21961F0022E6B4 /* MSButtonNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
