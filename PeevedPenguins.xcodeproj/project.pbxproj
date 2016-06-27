@@ -16,6 +16,12 @@
 		A36B0E151D20E40900BD10C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A36B0E131D20E40900BD10C4 /* LaunchScreen.storyboard */; };
 		A36B0E201D20E40900BD10C4 /* PeevedPenguinsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36B0E1F1D20E40900BD10C4 /* PeevedPenguinsTests.swift */; };
 		A36B0E2B1D20E40900BD10C4 /* PeevedPenguinsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36B0E2A1D20E40900BD10C4 /* PeevedPenguinsUITests.swift */; };
+		A36B0E391D2185A300BD10C4 /* assets.atlas in Resources */ = {isa = PBXBuildFile; fileRef = A36B0E381D2185A300BD10C4 /* assets.atlas */; };
+		A36B0E3B1D21867000BD10C4 /* Bear.sks in Resources */ = {isa = PBXBuildFile; fileRef = A36B0E3A1D21867000BD10C4 /* Bear.sks */; };
+		A3B670A01D2189FF0022E6B4 /* CharacterActions.sks in Resources */ = {isa = PBXBuildFile; fileRef = A3B6709F1D2189FF0022E6B4 /* CharacterActions.sks */; };
+		A3B670A21D218D7B0022E6B4 /* Penguin.sks in Resources */ = {isa = PBXBuildFile; fileRef = A3B670A11D218D7B0022E6B4 /* Penguin.sks */; };
+		A3B670A41D218FF40022E6B4 /* nodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B670A31D218FF40022E6B4 /* nodes.swift */; };
+		A3B670A61D2190AE0022E6B4 /* Seal.sks in Resources */ = {isa = PBXBuildFile; fileRef = A3B670A51D2190AE0022E6B4 /* Seal.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +57,12 @@
 		A36B0E261D20E40900BD10C4 /* PeevedPenguinsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeevedPenguinsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A36B0E2A1D20E40900BD10C4 /* PeevedPenguinsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeevedPenguinsUITests.swift; sourceTree = "<group>"; };
 		A36B0E2C1D20E40900BD10C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A36B0E381D2185A300BD10C4 /* assets.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = assets.atlas; sourceTree = "<group>"; };
+		A36B0E3A1D21867000BD10C4 /* Bear.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Bear.sks; sourceTree = "<group>"; };
+		A3B6709F1D2189FF0022E6B4 /* CharacterActions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CharacterActions.sks; sourceTree = "<group>"; };
+		A3B670A11D218D7B0022E6B4 /* Penguin.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Penguin.sks; sourceTree = "<group>"; };
+		A3B670A31D218FF40022E6B4 /* nodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = nodes.swift; sourceTree = "<group>"; };
+		A3B670A51D2190AE0022E6B4 /* Seal.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Seal.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +113,11 @@
 		A36B0E051D20E40800BD10C4 /* PeevedPenguins */ = {
 			isa = PBXGroup;
 			children = (
+				A36B0E381D2185A300BD10C4 /* assets.atlas */,
 				A36B0E061D20E40800BD10C4 /* AppDelegate.swift */,
+				A3B670A71D2193290022E6B4 /* objects */,
+				A3B670A31D218FF40022E6B4 /* nodes.swift */,
+				A3B6709F1D2189FF0022E6B4 /* CharacterActions.sks */,
 				A36B0E081D20E40800BD10C4 /* GameScene.sks */,
 				A36B0E0A1D20E40800BD10C4 /* GameScene.swift */,
 				A36B0E0C1D20E40800BD10C4 /* GameViewController.swift */,
@@ -129,6 +145,16 @@
 				A36B0E2C1D20E40900BD10C4 /* Info.plist */,
 			);
 			path = PeevedPenguinsUITests;
+			sourceTree = "<group>";
+		};
+		A3B670A71D2193290022E6B4 /* objects */ = {
+			isa = PBXGroup;
+			children = (
+				A36B0E3A1D21867000BD10C4 /* Bear.sks */,
+				A3B670A11D218D7B0022E6B4 /* Penguin.sks */,
+				A3B670A51D2190AE0022E6B4 /* Seal.sks */,
+			);
+			name = objects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,10 +261,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3B670A61D2190AE0022E6B4 /* Seal.sks in Resources */,
+				A3B670A21D218D7B0022E6B4 /* Penguin.sks in Resources */,
 				A36B0E091D20E40800BD10C4 /* GameScene.sks in Resources */,
 				A36B0E151D20E40900BD10C4 /* LaunchScreen.storyboard in Resources */,
 				A36B0E121D20E40900BD10C4 /* Assets.xcassets in Resources */,
+				A36B0E3B1D21867000BD10C4 /* Bear.sks in Resources */,
+				A36B0E391D2185A300BD10C4 /* assets.atlas in Resources */,
 				A36B0E101D20E40800BD10C4 /* Main.storyboard in Resources */,
+				A3B670A01D2189FF0022E6B4 /* CharacterActions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +297,7 @@
 				A36B0E0B1D20E40800BD10C4 /* GameScene.swift in Sources */,
 				A36B0E0D1D20E40800BD10C4 /* GameViewController.swift in Sources */,
 				A36B0E071D20E40800BD10C4 /* AppDelegate.swift in Sources */,
+				A3B670A41D218FF40022E6B4 /* nodes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,6 +526,7 @@
 				A36B0E311D20E40900BD10C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A36B0E321D20E40900BD10C4 /* Build configuration list for PBXNativeTarget "PeevedPenguinsTests" */ = {
 			isa = XCConfigurationList;
@@ -502,6 +535,7 @@
 				A36B0E341D20E40900BD10C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A36B0E351D20E40900BD10C4 /* Build configuration list for PBXNativeTarget "PeevedPenguinsUITests" */ = {
 			isa = XCConfigurationList;
@@ -510,6 +544,7 @@
 				A36B0E371D20E40900BD10C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
