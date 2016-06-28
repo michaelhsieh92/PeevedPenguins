@@ -7,16 +7,38 @@ class GameScene: SKScene {
     var levelNode: SKNode!
     var cameraTarget: SKNode?
     var buttonRestart: MSButtonNode!
-
+    var cantileverNode: SKSpriteNode!
+    var catapult: SKSpriteNode!
+    var touchNode: SKSpriteNode!
+    var touchJoint: SKPhysicsJointSpring?
     override func didMoveToView(view: SKView) {
         /* Set reference to catapultArm node */
         catapultArm = childNodeWithName("catapultArm") as! SKSpriteNode
         levelNode = childNodeWithName("//levelNode")
         buttonRestart = childNodeWithName("//buttonRestart") as! MSButtonNode
+        catapult = childNodeWithName("catapult") as! SKSpriteNode
+        cantileverNode = childNodeWithName("cantileverNode") as! SKSpriteNode
+        touchNode = childNodeWithName("touchNode") as! SKSpriteNode
         /* Load Level 1 */
         let resourcePath = NSBundle.mainBundle().pathForResource("Level1", ofType: "sks")
         let newLevel = SKReferenceNode (URL: NSURL (fileURLWithPath: resourcePath!))
         levelNode.addChild(newLevel)
+        
+        /* Create catapult arm physics body of type alpha */
+        let catapultArmBody = SKPhysicsBody (texture: catapultArm!.texture!, size: catapultArm.size)
+        
+        /* Set mass, needs to be heavy enough to hit the penguin with solid force */
+        catapultArmBody.mass = 0.5
+        
+        /* Apply gravity to catapultArm */
+        catapultArmBody.affectedByGravity = true
+        
+        /* Improves physics collision handling of fast moving objects */
+        catapultArmBody.usesPreciseCollisionDetection = true
+        
+        /* Assign the physics body to the catapult arm */
+        catapultArm.physicsBody = catapultArmBody
+        
         
         /* Setup restart button selection handler */
         buttonRestart.selectedHandler = {
@@ -37,26 +59,46 @@ class GameScene: SKScene {
             
             /* Restart game scene */
             skView.presentScene(scene)
+            
+            
         }
+        /* Pin joint catapult and catapult arm */
+        let catapultPinJoint = SKPhysicsJointPin.jointWithBodyA(catapult.physicsBody!, bodyB: catapultArm.physicsBody!, anchor: CGPoint(x:220 ,y:105))
+        physicsWorld.addJoint(catapultPinJoint)
+        
+        /* Spring joint catapult arm and cantilever node */
+        let catapultSpringJoint = SKPhysicsJointSpring.jointWithBodyA(catapultArm.physicsBody!, bodyB: cantileverNode.physicsBody!, anchorA: catapultArm.position + CGPoint(x:15, y:30), anchorB: cantileverNode.position)
+        physicsWorld.addJoint(catapultSpringJoint)
+        
+        /* Make this joint a bit more springy */
+        catapultSpringJoint.frequency = 1.5
+        
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        /* Add a new penguin to the scene */
-        let resourcePath = NSBundle.mainBundle().pathForResource("Penguin", ofType: "sks")
-        let penguin = MSReferenceNode(URL: NSURL (fileURLWithPath: resourcePath!))
-        addChild(penguin)
+        /* Called when a touch begins */
         
-        /* Move penguin to the catapult bucket area */
-        penguin.avatar.position = catapultArm.position + CGPoint(x: 32, y: 50)
-        
-        /* Impulse vector */
-        let launchDirection = CGVector(dx: 1, dy: 0)
-        let force = launchDirection * 100
-        
-        /* Apply impulse to penguin */
-        penguin.avatar.physicsBody?.applyImpulse(force)
-        cameraTarget = penguin.avatar
-
+        /* There will only be one touch as multi touch is not enabled by default */
+        for touch in touches {
+            
+            /* Grab scene position of touch */
+            let location    = touch.locationInNode(self)
+            
+            /* Get node reference if we're touching a node */
+            let touchedNode = nodeAtPoint(location)
+            
+            /* Is it the catapult arm? */
+            if touchedNode.name == "catapultArm" {
+                
+                /* Reset touch node position */
+                touchNode.position = location
+                
+                /* Spring joint touch node and catapult arm */
+                touchJoint = SKPhysicsJointSpring.jointWithBodyA(touchNode.physicsBody!, bodyB: catapultArm.physicsBody!, anchorA: location, anchorB: location)
+                physicsWorld.addJoint(touchJoint!)
+                
+            }
+        }
     }
     
     override func update(currentTime: CFTimeInterval) {
@@ -70,6 +112,24 @@ class GameScene: SKScene {
         
         /* Clamp camera scrolling to our visible scene area only */
         camera?.position.x.clamp(283, 677)
+    }
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        /* Called when a touch moved */
+        
+        /* There will only be one touch as multi touch is not enabled by default */
+        for touch in touches {
+            
+            /* Grab scene position of touch and update touchNode position */
+            let location       = touch.locationInNode(self)
+            touchNode.position = location
+            
+        }
+    }
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        /* Called when a touch ended */
+        
+        /* Let it fly!, remove joints used in catapult launch */
+        if let touchJoint = touchJoint { physicsWorld.removeJoint(touchJoint) }
     }
     
 }
