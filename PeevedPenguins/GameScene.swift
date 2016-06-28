@@ -11,6 +11,8 @@ class GameScene: SKScene {
     var catapult: SKSpriteNode!
     var touchNode: SKSpriteNode!
     var touchJoint: SKPhysicsJointSpring?
+    var penguinJoint: SKPhysicsJointPin?
+
     override func didMoveToView(view: SKView) {
         /* Set reference to catapultArm node */
         catapultArm = childNodeWithName("catapultArm") as! SKSpriteNode
@@ -31,7 +33,7 @@ class GameScene: SKScene {
         catapultArmBody.mass = 0.5
         
         /* Apply gravity to catapultArm */
-        catapultArmBody.affectedByGravity = true
+        catapultArmBody.affectedByGravity = false
         
         /* Improves physics collision handling of fast moving objects */
         catapultArmBody.usesPreciseCollisionDetection = true
@@ -98,6 +100,23 @@ class GameScene: SKScene {
                 physicsWorld.addJoint(touchJoint!)
                 
             }
+            /* Add a new penguin to the scene */
+            let resourcePath = NSBundle.mainBundle().pathForResource("Penguin", ofType: "sks")
+            let penguin = MSReferenceNode(URL: NSURL (fileURLWithPath: resourcePath!))
+            addChild(penguin)
+            
+            /* Position penguin in the catapult bucket area */
+            penguin.avatar.position = catapultArm.position + CGPoint(x: 32, y: 50)
+            
+            /* Improves physics collision handling of fast moving objects */
+            penguin.avatar.physicsBody?.usesPreciseCollisionDetection = true
+            
+            /* Setup pin joint between penguin and catapult arm */
+            penguinJoint = SKPhysicsJointPin.jointWithBodyA(catapultArm.physicsBody!, bodyB: penguin.avatar.physicsBody!, anchor: penguin.avatar.position)
+            physicsWorld.addJoint(penguinJoint!)
+            
+            /* Set camera to follow penguin */
+            cameraTarget = penguin.avatar
         }
     }
     
@@ -130,6 +149,8 @@ class GameScene: SKScene {
         
         /* Let it fly!, remove joints used in catapult launch */
         if let touchJoint = touchJoint { physicsWorld.removeJoint(touchJoint) }
+        if let penguinJoint = penguinJoint { physicsWorld.removeJoint(penguinJoint) }
+
     }
     
 }
