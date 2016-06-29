@@ -6,7 +6,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     /* Game object connections */
     var catapultArm: SKSpriteNode!
     var levelNode: SKNode!
-    var cameraTarget: SKNode!
+    var cameraTarget: SKNode?
     var buttonRestart: MSButtonNode!
     var cantileverNode: SKSpriteNode!
     var catapult: SKSpriteNode!
@@ -18,6 +18,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         /* Set reference to catapultArm node */
         catapultArm = childNodeWithName("catapultArm") as! SKSpriteNode
         levelNode = childNodeWithName("//levelNode")
+        cameraTarget = childNodeWithName("//cameraTarget")
         buttonRestart = childNodeWithName("//buttonRestart") as! MSButtonNode
         catapult = childNodeWithName("catapult") as! SKSpriteNode
         cantileverNode = childNodeWithName("cantileverNode") as! SKSpriteNode
@@ -53,7 +54,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let scene = GameScene(fileNamed:"GameScene") as GameScene!
             
             /* Ensure correct aspect mode */
-            scene.scaleMode = .AspectFill
+            scene.scaleMode = .AspectFit
             
             /* Show debug */
             skView.showsPhysics = true
@@ -140,9 +141,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         camera?.position.x.clamp(283, 677)
         
         /* Check penguin has come to rest */
-        if cameraTarget.physicsBody?.joints.count == 0 && cameraTarget.physicsBody?.velocity.length() < 0.18 {
+        if cameraTarget!.physicsBody?.joints.count == 0 && cameraTarget!.physicsBody?.velocity.length() < 0.18 {
             
-            cameraTarget.removeFromParent()
+            cameraTarget!.removeFromParent()
             
             /* Reset catapult arm */
             catapultArm.physicsBody?.velocity = CGVector(dx:0, dy:0)
