@@ -6,7 +6,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     /* Game object connections */
     var catapultArm: SKSpriteNode!
     var levelNode: SKNode!
-    var cameraTarget: SKNode?
+    var cameraTarget: SKNode!
     var buttonRestart: MSButtonNode!
     var cantileverNode: SKSpriteNode!
     var catapult: SKSpriteNode!
@@ -121,6 +121,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             /* Set camera to follow penguin */
             cameraTarget = penguin.avatar
+            
+            /* Remove any camera actions */
+            camera?.removeAllActions()
         }
     }
     
@@ -135,6 +138,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         /* Clamp camera scrolling to our visible scene area only */
         camera?.position.x.clamp(283, 677)
+        
+        /* Check penguin has come to rest */
+        if cameraTarget.physicsBody?.joints.count == 0 && cameraTarget.physicsBody?.velocity.length() < 0.18 {
+            
+            cameraTarget.removeFromParent()
+            
+            /* Reset catapult arm */
+            catapultArm.physicsBody?.velocity = CGVector(dx:0, dy:0)
+            catapultArm.physicsBody?.angularVelocity = 0
+            catapultArm.zRotation = 0
+            
+            /* Reset camera */
+            let cameraReset = SKAction.moveTo(CGPoint(x:284, y:camera!.position.y), duration: 1.5)
+            let cameraDelay = SKAction.waitForDuration(0.5)
+            let cameraSequence = SKAction.sequence([cameraDelay,cameraReset])
+            
+            camera?.runAction(cameraSequence)
+        }
+        
     }
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch moved */
